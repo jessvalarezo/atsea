@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { isActive } from '../../reducers'
+import { isActive, getContainerId } from '../../reducers'
 import LoginForm from '../LoginForm'
 import CreateUserForm from '../CreateUserForm'
 import FlatButton from 'material-ui/FlatButton'
@@ -16,6 +16,16 @@ class TopNav extends Component {
 
     }
 
+    renderContainerId() {
+        const { containerId } = this.props
+        const version = 12345678
+        return (
+        <div className='containerSection'>
+            { `ID: ${containerId} Version: ${version}` }
+        </div>
+        )
+    }
+
     renderActive() {
         return (
         <div>
@@ -28,23 +38,27 @@ class TopNav extends Component {
         /*<LoginForm handleSubmit={this.loginUser()}/>
         <CreateUserForm handleSubmit={this.createUser()}/>*/
         return (
-            <div className='navContainer'>
             <div className='buttonSection'>
                 <FlatButton label="Create User" />
                 <FlatButton label="Login" />
-            </div>
             </div>
         )
     }
 
     render() {
         const { isActive } = this.props;
-        return isActive? this.renderActive() : this.renderInactive();
+        return (
+            <div className='navContainer'>
+            {this.renderContainerId()}
+            {isActive? this.renderActive() : this.renderInactive()}
+            </div>
+        )
     }
 }
 
 const mapStateToProps = state => ({
-    isActive: isActive(state)
+    isActive: isActive(state),
+    containerId: getContainerId(state),
 })
 
 export default connect(

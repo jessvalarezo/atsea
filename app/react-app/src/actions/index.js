@@ -41,6 +41,21 @@ export const createOrder = (values) => (dispatch) => {
   return dispatch(dispatchObj)
 };
 
+export const fetchContainerId = () => (dispatch) => {
+  const url = `${BASE_URL}/utility/containerid/`
+  let dispatchObj = {
+    type: types.FETCH_CONTAINER_ID,
+    payload: {
+      promise:
+        request
+          .get(url)
+          .accept('application/json')
+          .end()
+          .then((res) => res.body)
+    },
+  }
+}
+
 export const fetchAllItems = () => (dispatch) => {
   let dispatchObj = {
     type: types.ITEMS_REQUEST,
