@@ -52,8 +52,8 @@ class CustomerInfoForm extends Component {
   renderBilling() {
     return (
       <div>
-        <div className='formHeader'>Billing Information</div>
-        <div className='formRow'>
+        <div className='infoHeader'>Billing Information</div>
+        <div className='infoRow'>
         <Field 
           name="company"
           component={company=> 
@@ -67,7 +67,7 @@ class CustomerInfoForm extends Component {
         }
       />
       </div>
-        <div className='formRow'>
+        <div className='infoRow'>
           <Field 
             name="address"
             component={address=> 
@@ -87,7 +87,7 @@ class CustomerInfoForm extends Component {
 
   renderButtons() {
     return(
-      <div className='formButton'>
+      <div className='infoButton'>
         <FlatButton
           label="Continue Shopping"
           containerElement={<Link to="/" />}

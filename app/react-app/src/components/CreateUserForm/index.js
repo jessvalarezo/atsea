@@ -10,7 +10,7 @@ class CreateUserForm extends Component {
   renderLogin() {
     return (
       <div>
-        <div className='formHeader'>Sign in to your account</div>
+        <div className='formHeader'>Create your user ID</div>
           <div className='formRow'>
           <Field 
             name="username"
@@ -30,10 +30,12 @@ class CreateUserForm extends Component {
   }
 
   renderButtons() {
+    const { handleSubmit } = this.props
     return(
       <div className='formButton'>
         <FlatButton
-          label="Login"
+          onClick={handleSubmit}
+          label="Sign up"
         />
       </div>
     );

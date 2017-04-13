@@ -4,19 +4,29 @@ import { isActive, getContainerId } from '../../reducers'
 import LoginForm from '../LoginForm'
 import CreateUserForm from '../CreateUserForm'
 import FlatButton from 'material-ui/FlatButton'
+import Modal from 'react-modal'
 import './styles.css'
 
-
 class TopNav extends Component {
-    loginUser() {
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            isCreateModalOpen: false,
+            isLoginModalOpen: false,
+            authenticated: false,
+            user: {},
+        }
     }
-    
-    createUser() {
 
+    handleCreateUser() {
+        console.log('creating user')
     }
 
-    renderContainerId() {
+    handleLogin() {
+        console.log('logging in')
+    }
+
+    /*renderContainerId() {
         const { containerId } = this.props
         const version = 12345678
         return (
@@ -24,33 +34,88 @@ class TopNav extends Component {
             { `ID: ${containerId} Version: ${version}` }
         </div>
         )
-    }
+    }*/
 
-    renderActive() {
+    makeCreateButton() {
         return (
-        <div>
-            Logged in :) 
-        </div>
+            <FlatButton
+                onClick={this.toggleCreateModal}
+                label="Create User"
+            />
         )
     }
 
-    renderInactive() {
-        /*<LoginForm handleSubmit={this.loginUser()}/>
-        <CreateUserForm handleSubmit={this.createUser()}/>*/
+    makeLoginButton() {
         return (
-            <div className='buttonSection'>
-                <FlatButton label="Create User" />
-                <FlatButton label="Login" />
+            <FlatButton
+                onClick={this.toggleLoginModal}
+                label="Login"
+            />
+        )
+    }
+
+    toggleCreateModal = () => {
+        this.setState({
+            isCreateModalOpen: !this.state.isCreateModalOpen,
+        })
+    }
+
+    toggleLoginModal = () => {
+        this.setState({
+            isLoginModalOpen: !this.state.isLoginModalOpen,
+        })
+    }
+    
+    renderCreateModal = () => {
+        return (
+            <Modal
+                isOpen={this.state.isCreateModalOpen}
+                onRequestClose={this.toggleCreateModal}
+            >
+            <div className='formContainer'>
+            <CreateUserForm handleSubmit={this.handleCreateUser} />
+            </div>
+            </Modal>
+        )
+    }
+
+    renderLoginModal = () => {
+        return (
+            <Modal
+                isOpen={this.state.isLoginModalOpen}
+                onRequestClose={this.toggleLoginModal}
+            >
+            <div className='formContainer'>
+            <LoginForm handleSubmit={this.handleLogin} />
+            </div>
+            </Modal>
+
+        )
+    }
+
+    renderUnauthenticated() {
+        return (
+            <div className='inauthenticated'>
+                {this.makeLoginButton()}
+                {this.makeCreateButton()}
+                {this.renderCreateModal()}
+                {this.renderLoginModal()}
+            </div>
+        )
+    }
+
+    renderAuthenticated() {
+        return (
+            <div className='authenticated'>
+
             </div>
         )
     }
 
     render() {
-        const { isActive } = this.props;
         return (
             <div className='navContainer'>
-            {this.renderContainerId()}
-            {isActive? this.renderActive() : this.renderInactive()}
+            { this.state.authenticated ? this.renderAuthenticated() : this.renderUnauthenticated()}
             </div>
         )
     }
@@ -59,7 +124,9 @@ class TopNav extends Component {
 const mapStateToProps = state => ({
     isActive: isActive(state),
     containerId: getContainerId(state),
+
 })
+
 
 export default connect(
   mapStateToProps,

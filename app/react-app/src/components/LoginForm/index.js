@@ -30,9 +30,11 @@ class LoginForm extends Component {
   }
 
   renderButtons() {
+    const { handleSubmit } = this.props
     return(
       <div className='formButton'>
         <FlatButton
+          onClick={handleSubmit}
           label="Login"
         />
       </div>
