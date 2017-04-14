@@ -1,0 +1,19 @@
+.titleContainer {
+    height: 90px;
+    width: 100%;
+}
+
+.productTitle {
+    height: 90px;
+    display: flex;
+    float: left;
+    padding-left: 150px;
+    align-items: center;
+    font-family: "Open Sans";
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.cartContainer {
+    height: 90px;
+}
