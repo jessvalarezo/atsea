@@ -1,28 +1,31 @@
+.checkoutSection {
+    width: 215px;
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
 .cartRow {
-    height: 90px;
     display: flex;
     align-items: center;
 }
 
 .cartQuantity {
-    width: 10px;
-    display: flex;
     font-family: 'Open Sans';
     font-size: 16px;
     color: #101e26;
-    align-items: center;
+    width: 50px;
+    padding-left: 25px;
 }
 
-.cartIcon {
-    display: flex;
-    align-items: center;
-    margin-right: 12px;
-}
-
-.checkoutSection {
-    height: 90px;
-    display: flex;
-    align-items: center;
+.cartDigit {
+    margin-top: -3px;
     float: right;
-    margin-right: 114px;
+    font-size: 22px;
+}
+
+.checkoutMessage {
+    font-family: 'Open Sans';
+    font-size: 14px;
+    color: #56b25e;
 }

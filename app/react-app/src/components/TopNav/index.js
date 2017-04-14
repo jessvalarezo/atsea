@@ -12,7 +12,9 @@ import LoginForm from '../LoginForm'
 import CreateUserForm from '../CreateUserForm'
 import FlatButton from 'material-ui/FlatButton'
 import Modal from 'react-modal'
+import Logo from '../Logo'
 import './styles.css'
+import '../globalStyles.css'
 
 class TopNav extends Component {
     constructor(props) {
@@ -125,7 +127,8 @@ class TopNav extends Component {
 
     renderUnauthenticated() {
         return (
-            <div className='inauthenticated'>
+            // <div className='inauthenticated'>
+            <div>
                 {this.makeLoginButton()}
                 {this.makeCreateButton()}
                 {this.renderCreateModal()}
@@ -144,9 +147,16 @@ class TopNav extends Component {
 
     render() {
         return (
-            <div className='navContainer'>
-            { this.renderContainerId()}
-            { this.state.authenticated ? this.renderAuthenticated() : this.renderUnauthenticated()}
+            <div className='globalContainer'>
+                <div className='navHeader'>
+                    <div className='navLogo'>
+                        <Logo />
+                    </div>
+                    <div className='navUser'>
+                    { this.renderContainerId()}
+                    { this.state.authenticated ? this.renderAuthenticated() : this.renderUnauthenticated()}
+                    </div>
+                </div>
             </div>
         )
     }
