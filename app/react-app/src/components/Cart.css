@@ -1,21 +1,28 @@
 .cartRow {
+    height: 90px;
     display: flex;
+    align-items: center;
 }
 
 .cartQuantity {
     width: 10px;
-    height: 22px;
+    display: flex;
     font-family: 'Open Sans';
     font-size: 16px;
     color: #101e26;
+    align-items: center;
 }
 
 .cartIcon {
+    display: flex;
+    align-items: center;
     margin-right: 12px;
 }
 
 .checkoutSection {
+    height: 90px;
     display: flex;
+    align-items: center;
     float: right;
     margin-right: 114px;
 }

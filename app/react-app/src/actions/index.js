@@ -41,6 +41,21 @@ export const createOrder = (values) => (dispatch) => {
   return dispatch(dispatchObj)
 };
 
+export const fetchContainerId = () => (dispatch) => {
+  const url = `${BASE_URL}/utility/containerid/`
+  let dispatchObj = {
+    type: types.FETCH_CONTAINER_ID,
+    payload: {
+      promise:
+        request
+          .get(url)
+          .accept('application/json')
+          .end()
+          .then((res) => res.body)
+    },
+  }
+}
+
 export const fetchAllItems = () => (dispatch) => {
   let dispatchObj = {
     type: types.ITEMS_REQUEST,
@@ -93,6 +108,7 @@ export const createCustomer = (username, password) => (dispatch) => {
   return dispatch(dispatchObj)
 };
 
+
 export const getCustomer = (username, password) => (dispatch) => {
  let dispatchObj = {
     type: types.LOGIN_CUSTOMER,
@@ -107,6 +123,23 @@ export const getCustomer = (username, password) => (dispatch) => {
   }
   return dispatch(dispatchObj)
 }
+
+export const loginCustomer = () => (dispatch) => {
+ let dispatchObj = {
+    type: types.LOGIN_CUSTOMER,
+    payload: {
+      promise:
+        request
+          .post(`${BASE_URL}/login/`)
+          .accept('application/json')
+          .send()
+          .end()
+          .then((res) => res.body)
+    },
+  }
+  return dispatch(dispatchObj)
+}
+
 
 export const logoutCustomer = () => (dispatch) => {
   dispatch({

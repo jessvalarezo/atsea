@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton'
 import './Cart.css'
 
 const Cart = ({ products, total, totalProducts }) => {
-  // const hasProducts = products.length > 0
   const cartRow = (
       <div className="cartRow">
         <div className="cartIcon">

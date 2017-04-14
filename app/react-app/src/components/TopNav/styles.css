@@ -1,0 +1,27 @@
+.buttonSection {
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
+.navContainer {
+    width: 100%;
+    height: 60px;
+}
+
+.containerSection {
+    display: flex;
+    float: right;
+    align-items: center;
+    color: #ffffff;
+    padding-right: 20px;
+    font-family: "Open Sans";
+    font-size: 10px;
+}
+
+.formContainer{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
