@@ -7,10 +7,12 @@ const receiveProducts = products => ({
   products: products
 })
 
-const BASE_URL = '/atsea/api'
+const BASE_URL = '/atsea'
+const API = `${BASE_URL}/api`
+const UTILITY = `${BASE_URL}/utility`
 
 export const createOrder = (values) => (dispatch) => {
-  const url = `${BASE_URL}/order/`
+  const url = `${API}/order/`
   let dispatchObj = {
     type: types.CREATE_ORDER,
     payload: {
@@ -47,7 +49,7 @@ export const fetchAllItems = () => (dispatch) => {
     payload: {
       promise:
         request
-          .get(`${BASE_URL}/product/`)
+          .get(`${API}/product/`)
           .accept('application/json')
           .end()
           .then((res) => res.body)
@@ -62,7 +64,7 @@ export const fetchAllCustomers = () => (dispatch) => {
     payload: {
       promise:
         request
-          .get(`${BASE_URL}/customer/`)
+          .get(`${API}/customer/`)
           .accept('application/json')
           .end()
           .then((res) => res.body)
@@ -72,7 +74,7 @@ export const fetchAllCustomers = () => (dispatch) => {
 };
 
 export const createCustomer = (username, password) => (dispatch) => {
-  const url = `${BASE_URL}/customer/`
+  const url = `${API}/customer/`
   let dispatchObj = {
     type: types.CREATE_CUSTOMER,
     payload: {
@@ -93,13 +95,14 @@ export const createCustomer = (username, password) => (dispatch) => {
   return dispatch(dispatchObj)
 };
 
+
 export const getCustomer = (username, password) => (dispatch) => {
  let dispatchObj = {
     type: types.LOGIN_CUSTOMER,
     payload: {
       promise:
         request
-          .get(`${BASE_URL}/customer/username=${username}`)
+          .get(`${API}/customer/username=${username}`)
           .accept('application/json')
           .end()
           .then((res) => res.body)
@@ -107,6 +110,46 @@ export const getCustomer = (username, password) => (dispatch) => {
   }
   return dispatch(dispatchObj)
 }
+
+export const loginCustomer = (username, password) => (dispatch) => {
+ let dispatchObj = {
+    type: types.LOGIN_CUSTOMER,
+    payload: {
+      promise:
+        request
+          .post(`${BASE_URL}/login/`)
+          .set('Content-Type', 'application/json')
+          .accept('application/json')
+          .send(
+            {
+              username:username,
+              password:password,
+            }
+          )
+          .end()
+          .then((res) => res.body)
+    },
+  }
+  return dispatch(dispatchObj)
+}
+
+export const fetchContainerId = () => (dispatch) => {
+  const url = `${UTILITY}/containerid/`
+  let dispatchObj = {
+    type: types.FETCH_CONTAINER_ID,
+    payload: {
+      promise:
+        request
+          .get(url)
+          .accept('application/json')
+          .end()
+          .then((res) => res.body)
+    },
+  }
+  return dispatch(dispatchObj)
+}
+
+
 
 export const logoutCustomer = () => (dispatch) => {
   dispatch({
