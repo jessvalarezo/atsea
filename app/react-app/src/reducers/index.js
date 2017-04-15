@@ -23,6 +23,9 @@ export const isActive = state => fromCustomer.isActive(state.customer)
 export const getContainerId = state => { 
   return state.container.containerId
 }
+export const getHost = state => { 
+  return state.container.host
+}
 export const getCustomerId = state => {
   return state.customer.customerId
 }

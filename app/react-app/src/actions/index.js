@@ -1,4 +1,5 @@
 const request = require('superagent-promise')(require('superagent'), Promise)
+import getJwtToken from './getJwtToken'
 import shop from '../api/shop'
 import * as types from '../constants/ActionTypes'
 
@@ -42,6 +43,11 @@ export const createOrder = (values) => (dispatch) => {
   }
   return dispatch(dispatchObj)
 };
+
+export const purchaseOrder = () => (dispatch) => {
+  const token = getJwtToken()
+  // post to purchase order
+}
 
 export const fetchAllItems = () => (dispatch) => {
   let dispatchObj = {
@@ -111,27 +117,40 @@ export const getCustomer = (username, password) => (dispatch) => {
   return dispatch(dispatchObj)
 }
 
+// export const loginCustomer = (username, password) => (dispatch) => {
+//  let dispatchObj = {
+//     type: types.LOGIN_CUSTOMER,
+//     payload: {
+//       promise:
+//         request
+//           .post(`${BASE_URL}/login/`)
+//           .set('Content-Type', 'application/json')
+//           .accept('application/json')
+//           .send(
+//             {
+//               username:username,
+//               password:password,
+//             }
+//           )
+//           .end()
+//           .then((res) => res.body)
+//     },
+//   }
+//   return dispatch(dispatchObj)
+// }
+
 export const loginCustomer = (username, password) => (dispatch) => {
  let dispatchObj = {
     type: types.LOGIN_CUSTOMER,
     payload: {
-      promise:
-        request
-          .post(`${BASE_URL}/login/`)
-          .set('Content-Type', 'application/json')
-          .accept('application/json')
-          .send(
-            {
-              username:username,
-              password:password,
-            }
-          )
-          .end()
-          .then((res) => res.body)
+      promise: Promise.resolve({
+          token: "random_string",
+      })
     },
   }
   return dispatch(dispatchObj)
 }
+
 
 export const fetchContainerId = () => (dispatch) => {
   const url = `${UTILITY}/containerid/`

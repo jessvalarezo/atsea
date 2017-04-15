@@ -11,7 +11,7 @@ const container = (state = initialState, action) => {
     case `${FETCH_CONTAINER_ID}_ACK`:
       return {
             ...state,
-            containerId: action.payload.containerId,
+            containerId: action.payload.ip,
             host: action.payload.host,
         }
     case `${FETCH_CONTAINER_ID}_ERR`:

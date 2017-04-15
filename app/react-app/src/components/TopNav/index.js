@@ -7,6 +7,7 @@ import {
 import {
     isActive,
     getContainerId,
+    getHost,
 } from '../../reducers'
 import LoginForm from '../LoginForm'
 import CreateUserForm from '../CreateUserForm'
@@ -23,12 +24,20 @@ class TopNav extends Component {
             isCreateModalOpen: false,
             isLoginModalOpen: false,
             authenticated: false,
+            loginSuccessful: false,
             user: {},
         }
     }
 
-    handleSuccess = () => {
+    handleCreateSuccess = () => {
+
+    }
+
+    handleLoginSuccess = ({ value: { token } }) => {
         console.log('success!')
+        localStorage.setItem("jwtToken", token)
+        this.setState({ authenticated: true})
+        this.setState({ loginSuccessful: true})
     }
 
     handleCreateUser = (values) => {
@@ -38,7 +47,7 @@ class TopNav extends Component {
         } = values;
         const { createCustomer } = this.props;
         createCustomer(username, password)
-          .then(this.handleSuccess)
+          .then(this.handleCreateSuccess)
           .catch((err) => {
             console.log('error creating the customer')
           })
@@ -52,18 +61,19 @@ class TopNav extends Component {
         const { loginCustomer } = this.props;
         console.log('logging in')
         loginCustomer(username, password)
-          .then(this.handleSuccess)
+          .then(this.handleLoginSuccess)
           .catch((err) => {
             console.log('error loggging in the customer')
           })
     }
 
     renderContainerId() {
-        const { containerId } = this.props
-        const version = 12345678
+        const { containerId, host } = this.props
+        // const version = 12345678
         return (
         <div className='containerSection'>
-            { `ID: ${containerId} Version: ${version}` }
+            {/*{ `ID: ${containerId} Version: ${version}` }*/}
+            { `IP: ${containerId} HOST: ${host}` }
         </div>
         )
     }
@@ -165,6 +175,7 @@ class TopNav extends Component {
 const mapStateToProps = state => ({
     isActive: isActive(state),
     containerId: getContainerId(state),
+    host: getHost(state),
 })
 
 

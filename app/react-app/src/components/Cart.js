@@ -3,11 +3,13 @@ import CartIcon from './CartIcon'
 import './Cart.css'
 
 const Cart = ({ products, total, totalProducts }) => {
+  const successMessage = `Added to your cart`;
+  const filler = ' ';
   return (
     <div className="checkoutSection">
       <div className="cartRow">
       <div className="checkoutMessage">
-        Added to your cart
+        { filler } 
       </div>
         <div className="cartQuantity">
           <CartIcon />
