@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import './styles.css'
 import '../globalStyles.css'
 
-const Title = ({ totalProducts }) => (
+const Title = ({ totalProducts, showItemAdded }) => (
     <div className='globalContainer'>
         <div className='titleBar'>
             <div className='productsSection'>
@@ -29,6 +29,7 @@ const Title = ({ totalProducts }) => (
             </div>
             <Cart
                 total={totalProducts}   
+                showItemAdded={showItemAdded}
             />
         </div>
     </div>
@@ -36,6 +37,7 @@ const Title = ({ totalProducts }) => (
 
 Title.propTypes = {
     totalProducts: PropTypes.string,
+    showItemAdded: PropTypes.bool,
 }
 
 export default Title
