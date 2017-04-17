@@ -8,8 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
 import reducer from './reducers'
 import {
-  getAllProducts,
-  // fetchAllItemsWithTimeout,
+  fetchAllDummyItems,
   fetchAllItems,
   fetchContainerId,
 } from './actions'
@@ -41,12 +40,10 @@ const muiTheme = getMuiTheme({
   },
 })
 
-store.dispatch(getAllProducts())
+store.dispatch(fetchAllDummyItems())
+// TODO: remove line above and uncomment line below when requests are working
+// store.dispatch(fetchAllItems())
 store.dispatch(fetchContainerId())
-// store.dispatch(fetchAllItemsWithTimeout())
-setTimeout(() => {
-  store.dispatch(fetchAllItems())
-}, 250)
 
 render(
   <Provider store={store}>

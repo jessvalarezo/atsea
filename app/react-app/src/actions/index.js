@@ -3,11 +3,6 @@ import { getJwtToken } from './storage'
 import shop from '../api/shop'
 import * as types from '../constants/ActionTypes'
 
-const receiveProducts = products => ({
-  type: types.RECEIVE_PRODUCTS,
-  products: products
-})
-
 const API = '/api'
 const UTILITY = '/utility'
 
@@ -206,9 +201,15 @@ export const addUser = (username) => (dispatch) => {
 }
 
 
-export const getAllProducts = () => dispatch => {
+// DUMMY ITEMS
+const fetchDummyItems = products => ({
+  type: types.DUMMY_ITEMS_REQUEST,
+  products: products
+})
+
+export const fetchAllDummyItems = () => dispatch => {
   shop.getProducts(products => {
-    dispatch(receiveProducts(products))
+    dispatch(fetchDummyItems(products))
   })
 }
 

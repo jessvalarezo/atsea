@@ -9,7 +9,7 @@ export default class ProductsList extends Component {
     const { fetchAllItems } = this.props
       fetchAllItems()
         .then((resp) => {
-          console.log('yay we have products')
+          console.log('yay retry worked')
         })
         .catch((err) => {
           console.log('boo retry failed')
@@ -22,7 +22,7 @@ export default class ProductsList extends Component {
     if (products.length===0) {
       console.log('attempting retry')
       setTimeout(() => {
-        this.fetchAll()
+        this.fetchAll
         }, 250)
     } else {
       console.log('no need to retry')
